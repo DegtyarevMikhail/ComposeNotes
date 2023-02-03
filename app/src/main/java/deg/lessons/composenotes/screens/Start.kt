@@ -1,11 +1,58 @@
 package deg.lessons.composenotes.screens
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.Button
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import deg.lessons.composenotes.navigation.NavRoute
+import deg.lessons.composenotes.ui.theme.ComposeNotesTheme
 
 
 @Composable
-fun Start (navController: NavHostController){
-        Text(text = "Screen from Mikhail")
+fun StartScreen (navController: NavHostController){
+        Scaffold(modifier = Modifier.fillMaxSize()
+        ) {
+              Column(
+                      modifier = Modifier.fillMaxSize(),
+              horizontalAlignment = Alignment.CenterHorizontally,
+              verticalArrangement = Arrangement.Center
+              ) {
+                 Text(text = "What will we use?")
+                     Button(
+                             onClick = {
+                                navController.navigate(route = NavRoute.Main.route)
+                                       },
+                             modifier = Modifier
+                                     .width(200.dp)
+                                     .padding(vertical = 8.dp)
+                     ) {
+                        Text(text = "Room database")
+                     }
+                  Button(
+                      onClick = {
+                          navController.navigate(route = NavRoute.Main.route)
+                      },
+                      modifier = Modifier
+                          .width(200.dp)
+                          .padding(vertical = 8.dp)
+                  ) {
+                      Text(text = "Firebase database")
+                  }
+              }
+        }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun prevStartScreen(){
+        ComposeNotesTheme{
+                StartScreen(navController = rememberNavController())
+        }
 }
